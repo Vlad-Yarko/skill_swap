@@ -6,7 +6,7 @@ from src.api.dependencies.db import DBSession
 from src.services.user_skill import UserSkillService
 from src.repositories.skills import SkillRepository
 from src.repositories.users import UserRepository
-from src.api.schemas.users_skills import UserSkill, UserSkillSchema
+from src.schemas.users_skills import UserSkill, UserSkillSchema
 
 
 async def users_skills_dep(session: DBSession, body: UserSkill) -> UserSkillSchema:

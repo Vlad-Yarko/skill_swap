@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from src.api.schemas.skills import UserSkill, SkillPublic
+from src.schemas.skills import UserSkill, SkillPublic
 from src.api.dependencies.skills import add_user_one, add_one
 
 

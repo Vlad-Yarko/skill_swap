@@ -14,3 +14,6 @@ class UserRepository(SQLAlchemyRepository):
     
     async def select_one_by_email(self, email: str):
         return await self.select_one("email", email)
+    
+    async def select_all_users(self, page: Optional[int] = None) -> tuple[list, int, int]:
+        return await self.select_all(page)

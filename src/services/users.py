@@ -4,6 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.utils.service import Service
 from src.utils.repository import Repository
+from src.schemas.users import UsersPublic, UserPublic
 
 
 class UserService(Service):
@@ -25,4 +26,20 @@ class UserService(Service):
         if user:
             return None
         id = await self.user_repo(self.session).create_one(username=username, email=email, full_name=full_name, bio=bio)
-        return id        
+        return id
+    
+    async def get_all(self, page: Optional[int] = None) -> UsersPublic:
+        data, total, offset = await self.user_repo(self.session).select_all_users(page)
+        count = len(data)
+        data = [UserPublic.model_validate(user) for user in data]
+        next = False
+        if page is not None:
+            next = (page * offset) < total
+        
+        return UsersPublic(
+            page=page,
+            data=data,
+            count=count,
+            total=total,
+            next=next
+        )

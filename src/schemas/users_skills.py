@@ -1,13 +1,15 @@
 from typing import Union
 
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from src.utils.schema import Schema
 
 
-class UserSkill(BaseModel):
+class UserSkill(Schema):
     skillId: int = Field(...)
     userId: int = Field(...)
 
 
-class UserSkillSchema(BaseModel):
+class UserSkillSchema(Schema):
     body: UserSkill
     d: Union[int, bool, None]

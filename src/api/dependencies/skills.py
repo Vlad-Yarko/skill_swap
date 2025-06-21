@@ -5,7 +5,7 @@ from fastapi import Depends, HTTPException, status
 from src.api.dependencies.db import DBSession
 from src.repositories.skills import SkillRepository
 from src.services.skills import SkillService
-from src.api.schemas.skills import UserSkill, SkillBody, SkillPublic
+from src.schemas.skills import UserSkill, SkillBody, SkillPublic
 from src.api.dependencies.users_skills import users_skills_dependency
 
 
